@@ -1,0 +1,73 @@
+@font-face {
+    font-family: 'Swiss 911 Ultra Compressed Regular';
+    src: url(Swiss911UltraCompressedRegular/Swiss911UltraCompressedRegular.otf);
+}
+
+* {
+    background-color: #000;
+    font-family: 'Swiss 911 Ultra Compressed Regular';
+    margin: 0;
+    padding: 0;
+}
+
+#calculator {
+    align-items: center;
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+#display {
+    border: 1px solid white;
+    border-radius: 12px;
+    color: #F69600; /* Gamboge */
+    font-size: 75px;
+    min-width: 200px;
+    text-align: center;
+}
+
+#buttons {
+    border: 1px solid white;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+#row1, #row2, #row3, #row4 {
+    display: flex;
+    gap: 15px;
+}
+
+button {
+    border: none;
+    border-radius: 25px;
+    font-size: 24px;
+    height: 45px;
+    padding: 20px 22px 30px 0;
+    text-align: end;
+    width: 140px;
+}
+
+.indigo {
+    background-color: #9B9BFD; /* Tropical Indigo */
+}
+
+.tangerine {
+    background-color: #FE9C5F; /* Atomic Tangerine */
+}
+
+.lilac {
+    background-color: #CB9BCD; /* Lilac */
+}
+
+.red {
+    background-color: #CF6266; /* Indian Red */
+}
+
+.yellow {
+    background-color: #FFCF61; /* Sunglow */
+}
