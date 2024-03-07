@@ -43,6 +43,12 @@ body {
     padding: 10px;
 }
 
+#row1 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 55px;
+}
+
 #row1, #row2, #row3, #row4 {
     display: flex;
     gap: 15px;
@@ -51,11 +57,25 @@ body {
 button {
     border: none;
     border-radius: 25px;
-    font-size: 24px;
+    font-size: 26px;
     height: 45px;
     padding: 20px 22px 30px 0;
     text-align: end;
-    width: 140px;
+    width: 120px;
+}
+
+#row5 {
+    display: flex;
+    justify-content: space-between;
+}
+
+#group1 {
+    display: flex;
+    gap: 15px;
+}
+
+.bigger-btn {
+    width: 255px;
 }
 
 .indigo {
