@@ -74,6 +74,10 @@ buttons.addEventListener('click', e => {
             display.textContent = displayedNum + '.';
         }
 
+        if (operation === 'negative') {
+            display.textContent = displayedNum *= -1;
+        }
+
         if (operation === 'clear') {
             display.textContent = 0;
         }
