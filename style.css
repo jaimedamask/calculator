@@ -69,7 +69,7 @@ button {
     justify-content: space-between;
 }
 
-#group1 {
+.group1 {
     display: flex;
     gap: 15px;
 }
