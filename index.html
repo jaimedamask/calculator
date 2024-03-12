@@ -12,7 +12,10 @@
             <div id='display'>0</div>
             <div id='buttons'>
                 <div id='row1'>
-                    <button id='clear' data-action='clear' class='red action'>CLEAR</button>
+                    <div class='group1'>
+                        <button id='clear' data-action='clear' class='red action'>CLEAR</button>
+                        <button id='backspace' class='yellow'>DELETE</button>
+                    </div>
                     <button id='equals' data-action='calculate' class='indigo action'>=</button>
                 </div>
                 <div id='row2'>
@@ -34,7 +37,7 @@
                     <button id='multiply' data-action='multiplication' class='yellow  operator  action'>x</button>
                 </div>
                 <div id='row5'>
-                    <div id='group1'>
+                    <div class='group1'>
                         <button id='decimal' data-action='decimal' class='lilac numbers'>.</button>
                         <button id='0' class='yellow numbers'>0</button>
                         <button id='negative' data-action='negative' class='tangerine'>+/-</button>
