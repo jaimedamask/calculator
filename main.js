@@ -36,7 +36,11 @@ function operate(num1, num2, operator) {
     };
 
     if (operator === 'division') {
-        return divide(n1, n2);
+        if (n2 === 0) {
+            return 'You can\'t divide by 0.'
+        } else {
+            return divide(n1, n2);
+        }
     };
 }
 
