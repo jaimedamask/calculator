@@ -37,7 +37,7 @@ function operate(num1, num2, operator) {
 
     if (operator === 'division') {
         if (n2 === 0) {
-            return 'You can\'t divide by 0.'
+            return 'You can\'t divide by 0.';
         } else {
             return divide(n1, n2);
         }
@@ -75,7 +75,9 @@ buttons.addEventListener('click', e => {
         }
 
         if (operation === 'decimal') {
-            display.textContent = displayedNum + '.';
+            if (displayedNum.includes('.') === false) {
+                display.textContent = displayedNum + '.';
+            }
         }
 
         if (operation === 'negative') {
