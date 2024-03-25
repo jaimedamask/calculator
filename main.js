@@ -62,7 +62,7 @@ function addDecimal() {
 }
 
 function makeNegPos() {
-    parseFloat(currentNum) * -1;
+    currentNum = parseFloat(currentNum) * -1;
     updateDisplay();
 }
 
