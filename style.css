@@ -28,10 +28,19 @@ body {
 #display {
     border: 1px solid white;
     border-radius: 12px;
+    height: 176px;
+    margin-top: 10px;
+    width: 547px;
+    text-align: center;
+}
+
+#display > * {
     color: #F69600; /* Gamboge */
     font-size: 75px;
-    min-width: 200px;
-    text-align: center;
+}
+
+#prev-num {
+    border-radius: 12px;
 }
 
 #buttons {
