@@ -9,12 +9,15 @@
     </head>
     <body>
         <div id='calculator'>
-            <div id='display'>0</div>
+            <div id='display'>
+                <div id='prev-num'></div>
+                <div id='current-num'></div>
+            </div>
             <div id='buttons'>
                 <div id='row1'>
                     <div class='group1'>
                         <button id='clear' data-action='clear' class='red action'>CLEAR</button>
-                        <button id='backspace' class='yellow'>DELETE</button>
+                        <button id='delete' class='yellow'>DELETE</button>
                     </div>
                     <button id='equals' data-action='calculate' class='indigo action'>=</button>
                 </div>
