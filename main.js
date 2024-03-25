@@ -1,100 +1,142 @@
-let num1;
-let num2;
-let operator;
-const display = document.getElementById('display');
+let prevNum = '';
+let currentNum = '';
+let operation = null;
+let displayedOperator = '';
+
+const display = document.querySelector('#display');
+const prevNumDisplay = document.getElementById('prev-num');
+const currentNumDisplay = document.getElementById('current-num');
+//const buttons = document.querySelector('#buttons');
+const numberButtons = document.querySelectorAll('.numbers');
+const operationButtons = document.querySelectorAll('.operator');
+const decimalButton = document.getElementById('decimal');
+const negativeButton = document.getElementById('negative');
+const clearButton = document.getElementById('clear');
+const deleteButton = document.getElementById('delete');
+const equalsButton = document.getElementById('equals');
+
+numberButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        appendNumber(button.innerText);
+        updateDisplay();
+    });
+});
+
+operationButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        displayedOperator = button.innerText;
+        setOperator(button.dataset.action);
+        updateDisplay();
+        console.log(button.dataset.action);
+    });
+});
+
+decimalButton.addEventListener('click', addDecimal);
+negativeButton.addEventListener('click', makeNegPos);
+clearButton.addEventListener('click', clear);
+deleteButton.addEventListener('click', deleteLast);
+equalsButton.addEventListener('click', operate);
 
 function add(a, b) {
     return a + b;
-};
+}
 
 function subtract(a, b) {
     return a - b;
-};
+}
 
 function multiply(a, b) {
     return a * b;
-};
+}
 
 function divide(a, b) {
     return a / b;
-};
-
-function operate(num1, num2, operator) {
-    let n1 = parseFloat(num1);
-    let n2 = parseFloat(num2);
-
-    if (operator === 'addition') {
-        return add(n1, n2);
-    };
-
-    if (operator === 'subtraction') {
-        return subtract(n1, n2);
-    };
-
-    if (operator === 'multiplication') {
-        return multiply(n1, n2);
-    };
-
-    if (operator === 'division') {
-        if (n2 === 0) {
-            return 'You can\'t divide by 0.';
-        } else {
-            return divide(n1, n2);
-        }
-    };
 }
 
-const calculator = document.querySelector('#calculator');
-const buttons = document.querySelector('#buttons');
+function addDecimal() {
+    if (currentNum.includes('.')) return;
+    if (currentNum === '') currentNum = '0';
 
-buttons.addEventListener('click', e => {
-    if (e.target.matches('button')) {
-        const button = e.target; 
-        const operation = button.dataset.action;
-        const buttonContent = button.textContent;
-        let displayedNum = display.textContent;
+    currentNum += '.';
+    updateDisplay();
+}
 
-        if (!operation) {
-            if (displayedNum === '0') {
-                display.textContent = buttonContent;
-            } else {
-                display.textContent = displayedNum += buttonContent;
-            }
-        }
+function makeNegPos() {
+    parseFloat(currentNum) * -1;
+    updateDisplay();
+}
 
-        if (
-            operation === 'addition' ||
-            operation === 'subtraction' ||
-            operation === 'multiplication' ||
-            operation === 'division'
-        ) {
-            calculator.dataset.num1 = displayedNum;
-            calculator.dataset.operator = operation;
-            
-            display.textContent = 0;
-        }
+function clear() {
+    currentNum = '';
+    prevNum = '';
+    operation = null;
+    displayedOperator = null;
+    updateDisplay();
+}
 
-        if (operation === 'decimal') {
-            if (displayedNum.includes('.') === false) {
-                display.textContent = displayedNum + '.';
-            }
-        }
+function deleteLast() {
+    currentNum = currentNum.toString().slice(0, -1);
+    updateDisplay();
+}
 
-        if (operation === 'negative') {
-            display.textContent = displayedNum *= -1;
-        }
+function appendNumber(number) {
+    if (number !== '.' && !number.includes('.')) {
+        currentNum = currentNum.toString() + number.toString();
+    } else return;
+}
 
-        if (operation === 'clear') {
-            display.textContent = 0;
-        }
-
-        if (operation === 'calculate') {
-            num1 = calculator.dataset.num1;
-            num2 = displayedNum;
-            
-            operator = calculator.dataset.operator;
-            let result = operate(num1, num2, operator);
-            display.textContent = result;
-        }
+function setOperator(selectedOperator) {
+    if (currentNum === '') return;
+    if (prevNum !== '') {
+        operate();
     }
-})
+    operation = selectedOperator;
+    prevNum = currentNum;
+    currentNum = '';
+}
+
+function operate() {
+    let result;
+    const prev = parseFloat(prevNum);
+    const current = parseFloat(currentNum);
+
+    if (isNaN(prev) || isNaN(current)) return;
+    if (current === 0 && operation === 'division') {
+        alert("Try again. You can't divide by 0.");
+        clear();
+    } 
+
+    switch (operation) {
+        case 'addition':
+            result = add(prev, current);
+            break;
+        case 'subtraction':
+            result = subtract(prev, current);
+            break;
+        case 'multiplication':
+            result = multiply(prev, current);
+            break;
+        case 'division':
+            result = divide(prev, current);
+            break;
+        default:
+            return;
+    }
+
+    currentNum = result;
+    operation = undefined;
+    displayedOperator = null;
+    prevNum = '';
+    result = 0;
+    updateDisplay();
+}
+
+function updateDisplay() {
+    currentNumDisplay.innerText = currentNum;
+
+    if (displayedOperator) {
+        prevNumDisplay.innerText = prevNum + ' ' + displayedOperator;
+    } else {
+        prevNumDisplay.innerText = prevNum;
+    }
+}
